@@ -1,0 +1,62 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   ft_print_comb.c                                  .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: amonteli <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/07/04 11:45:29 by amonteli     #+#   ##    ##    #+#       */
+/*   Updated: 2019/07/04 16:39:48 by amonteli    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
+#include <unistd.h>
+
+void    print_char(char c)
+{
+	write(STDOUT_FILENO, &c, sizeof(c));
+}
+
+void	print_int(int i)
+{
+	print_char(48 + i);	
+}
+
+void	ft_print_comb(void)
+{
+	int first;
+	int middle;
+	int last;
+
+	first = 0;
+	middle = 1;
+	last = 2;
+	
+	while (first <= 7)
+	{
+		while (middle <= 8)
+		{
+			while (last <= 9)
+			{
+				print_int(first);
+				print_int(middle);
+				print_int(last);
+				
+				print_char(' ');	
+				last++; 
+			}
+
+			last = middle + 1;
+			middle++;
+		}
+		middle = first + 1;
+		first++;
+	}
+}
+
+int		main(void)
+{
+	ft_print_comb();
+}
+
